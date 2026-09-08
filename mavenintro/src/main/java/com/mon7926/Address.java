@@ -1,7 +1,8 @@
 package com.mon7926;
 
 import org.springframework.beans.factory.annotation.Value;
-
+import org.springframework.stereotype.Component;
+@Component 
 public class Address {
   
     //@Value("Springfield_testing_spel") //spel expression

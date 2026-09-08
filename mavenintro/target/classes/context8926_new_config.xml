@@ -64,12 +64,17 @@
     </bean> -->
     <!-- <context:component-scan base-package="com.mon7926"/> -->
     <!-- ============passing data from external properties files ======================-->
-     <context:annotation-config/>
+     <!-- <context:annotation-config/>
      <context:property-placeholder location="classpath:AddressData.properties,classpath:StudentData.properties"/>
      <bean id="address" class="com.mon7926.Address">
      </bean>
      <bean id="student" class="com.mon7926.Student">
-     </bean>
+     </bean> -->
+
+     <!-- using base package for component scanning -->
+
+     <context:component-scan base-package="com.mon7926"/>
+     <context:property-placeholder location="classpath:AddressData.properties,classpath:StudentData.properties"/>
      
 </beans>
  
