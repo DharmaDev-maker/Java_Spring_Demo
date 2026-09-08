@@ -2,6 +2,8 @@ package com.mon7926;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mon7926.service.StudentserviceImpl;
+
 /**
  * Hello world!
  *
@@ -56,12 +58,20 @@ public class App
         this reason we will use Annotation called @Qualifier to specify which bean to inject.
 */
   //  testing the placeholder injection for student properties
-  ApplicationContext context = new ClassPathXmlApplicationContext("context8926_new_config.xml");
+  /*ApplicationContext context = new ClassPathXmlApplicationContext("context8926_new_config.xml");
     Student s = context.getBean("student", Student.class); //internally it is typcasted object -> student
     System.out.println("Student Name: " + s.getName());
     System.out.println("Student Age: " + s.getAge());
-    System.out.println(s.getAddress());
+    System.out.println(s.getAddress());*/
 
+ ApplicationContext context = new ClassPathXmlApplicationContext("context8926_new_config.xml");
+ Student18926 s = context.getBean(Student18926.class); //internally it is typcasted object -> student
+
+   StudentserviceImpl studentService = context.getBean(StudentserviceImpl.class);
+   studentService.printStudentByName(s.getName());
+   studentService.addStudent(s);
+   studentService.getAllStudents().forEach((k, v) -> System.out.println("Key: " + k + ", Value: " + v));;
+  
      
      
 

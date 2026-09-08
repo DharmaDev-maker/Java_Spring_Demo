@@ -1,24 +1,26 @@
 package com.mon7926.dao;
 
 import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 
-import com.mon7926.Student;
+import com.mon7926.Student18926;
 
-//this class is used to perform crud operations for student entity
-//access the database
+@Repository 
 public class StudentDAOImpl {
 
-private static Map<Integer, Student> studentMap = new HashMap<>();
+private static Map<Integer, Student18926> studentMap = new HashMap<>();
    static{
-    studentMap.put(1, new Student("sidhu",1    ));
-    studentMap.put(2, new Student("Jane Smith", 2));
-    studentMap.put(3, new Student("Alice Johnson", 3));
+    studentMap.put(1, new Student18926("sidhu",1    , null));
+    studentMap.put(2, new Student18926("Jane Smith", 2, null));
+    studentMap.put(3, new Student18926("Alice Johnson", 3, null));
    }
 
    //method to get student by name
-   public Student getStudentByName(String name) {
-       for (Student student : studentMap.values()) {
+   public Student18926 getStudentByName(String name) {
+       for (Student18926 student : studentMap.values()) {
            if (student.getName().equals(name)) {
                return student;
            }
@@ -27,8 +29,14 @@ private static Map<Integer, Student> studentMap = new HashMap<>();
    }
  
    //add a new student
-   public void addStudent(Student student) {
+   public void addStudent(Student18926 student) {
        studentMap.put(student.getAge(), student);
        System.out.println("Added student: " + student.getName());
    }
+   //list of students
+   public Map<Integer, Student18926> getAllStudents() {
+       return studentMap;
+   }
+  
+   
 }
