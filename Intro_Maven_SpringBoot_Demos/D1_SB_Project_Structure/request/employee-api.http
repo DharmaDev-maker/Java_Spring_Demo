@@ -1,0 +1,67 @@
+### ─────────────────────────────────────────────────────────
+### D1 — Spring Boot Project Structure
+### Base URL : http://localhost:8090
+### Server   : Embedded Tomcat
+### ─────────────────────────────────────────────────────────
+
+@baseUrl = http://localhost:8090
+
+### ── 1. GET All Employees ──────────────────────────────────
+
+GET {{baseUrl}}/emp/controller/getDetails
+Accept: application/json
+
+### ── 2. GET Employee by ID (existing) ────────────────────
+
+GET {{baseUrl}}/emp/controller/getDetailsById/10001
+Accept: application/json
+
+### ── 3. GET Employee by ID (not found → 404) ─────────────
+
+GET {{baseUrl}}/emp/controller/getDetailsById/99999
+Accept: application/json
+
+### ── 4. POST Add New Employee ─────────────────────────────
+
+POST {{baseUrl}}/emp/controller/addEmp
+Content-Type: application/json
+
+{
+  "employeeName": "Alice",
+  "salary": 50000.0,
+  "departmentCode": 1004
+}
+
+### ── 5. PUT Update Existing Employee ─────────────────────
+
+PUT {{baseUrl}}/emp/controller/updateEmp
+Content-Type: application/json
+
+{
+  "employeeName": "Jack Updated",
+  "employeeId": 10001,
+  "salary": 75000.0,
+  "departmentCode": 1001
+}
+
+### ── 6. PUT Update Non-Existent Employee (→ 500) ─────────
+
+PUT {{baseUrl}}/emp/controller/updateEmp
+Content-Type: application/json
+
+{
+  "employeeName": "Ghost",
+  "employeeId": 99999,
+  "salary": 10000.0,
+  "departmentCode": 9999
+}
+
+### ── 7. DELETE Employee by ID ─────────────────────────────
+
+DELETE {{baseUrl}}/emp/controller/deleteEmp/10003
+Accept: application/json
+
+### ── 8. DELETE Non-Existent Employee (→ 500) ─────────────
+
+DELETE {{baseUrl}}/emp/controller/deleteEmp/99999
+Accept: application/json

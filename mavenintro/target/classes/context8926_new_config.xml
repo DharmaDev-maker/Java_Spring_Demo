@@ -11,9 +11,10 @@
             Spring BBasic Annotations (@Component, @Autowired:inject a bean into another bean, @Qualifier, etc.)
              @Autowired
                 @Qualifier("....") it will not independently works with autowire only
-        2.JSR250 Annotations
-        3.JSR330 Annotations
-
+        2.JSR250 Annotations - @Resource replaces @Autowired for dependency injection  it cannot be used in constructor level
+        3.JSR330 Annotations - @Named replacement of component (@Named),@inject replacment of @Autowired for dependency injection
+               @Profile will only work only the class have another annotation 
+               like @Component, @Service, etc.
         By default spring disables all types of 
         annotation-based configuration unless 
         explicitly enabled.
