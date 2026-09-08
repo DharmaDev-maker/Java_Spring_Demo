@@ -3,11 +3,11 @@ package com.mon7926;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component 
+
 public class Address18926 {
-    @Value("${address.state}")
+   
     private String state;
-    @Value("${address.city}")
+   
     private String city;
 
     // Default constructor
@@ -18,6 +18,7 @@ public class Address18926 {
     public Address18926(String state, String city) {
         this.state = state;
         this.city = city;
+        System.out.println("Creating Address18926 with state: " + state + " and city: " + city);
     }
 
     public String getState() {

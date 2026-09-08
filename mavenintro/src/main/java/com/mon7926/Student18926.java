@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component 
+
 public class Student18926 {
     private String name;
     private int age;
@@ -15,8 +15,8 @@ public class Student18926 {
     }
 
     // Parameterized constructor
-    @Autowired 
-    public Student18926(@Value ("${student.name}") String name,  @Value ("${student.age}") int age, Address18926 address) {
+   
+    public Student18926( String name,   int age, Address18926 address) {
         this.name = name;
         this.age = age;
         this.address = address;
@@ -43,6 +43,7 @@ public class Student18926 {
     }
 
     public void setAddress(Address18926 address) {
+        System.out.println("Setting address: " + address);
         this.address = address;
     }
 

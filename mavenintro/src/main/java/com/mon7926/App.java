@@ -1,7 +1,12 @@
 package com.mon7926;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.mon7926.config.SpringConfig;
+import com.mon7926.config.SpringConfig1;
+import com.mon7926.config.SpringConfig2;
+import com.mon7926.config.SpringConfig3;
 import com.mon7926.service.StudentserviceImpl;
 
 /**
@@ -64,16 +69,25 @@ public class App
     System.out.println("Student Age: " + s.getAge());
     System.out.println(s.getAddress());*/
 
- ApplicationContext context = new ClassPathXmlApplicationContext("context8926_new_config.xml");
- Student18926 s = context.getBean(Student18926.class); //internally it is typcasted object -> student
+//  ApplicationContext context = new ClassPathXmlApplicationContext("context8926_new_config.xml");
+//  Student18926 s = context.getBean(Student18926.class); //internally it is typcasted object -> student
 
-   StudentserviceImpl studentService = context.getBean(StudentserviceImpl.class);
-   studentService.printStudentByName(s.getName());
-   studentService.addStudent(s);
-   studentService.getAllStudents().forEach((k, v) -> System.out.println("Key: " + k + ", Value: " + v));;
-  
-     
-     
+ /*    StudentserviceImpl studentService = context.getBean(StudentserviceImpl.class);
+    studentService.printStudentByName(s.getName());
+    studentService.addStudent(s);
+    studentService.getAllStudents().forEach((k, v) -> System.out.println("Key: " + k + ", Value: " + v));;
+  */
+ 
+   /* 
+      SpringCOnfiguration of bean creation instead 
+      of XML configuration.
+   */
+
+      ApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig1.class,SpringConfig2.class,SpringConfig3.class);
+        // Address address = context.getBean("getAddress", Address.class); // the name of the method
+     //will become the bean name in the Spring context
+     Student18926 student = context.getBean("getStudent", Student18926.class);
+     System.out.println("Student: " + student);
 
     
    
