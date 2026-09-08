@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/xsd-configuration.html -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--                         08-09-2026
+    1) Eager loading means ?? 
+    Eager loading means that the bean is created and 
+    initialized as soon as the Spring container starts, 
+    rather than waiting until it is first requested.
+    2)lazy-initialization??
+    Lazy initialization means that the bean is created 
+    and initialized only when it is first requested, 
+    rather than at the startup of the Spring container.
+
+      bean scope
+   1) singleton (default) - Only one instance of the bean is created per Spring IoC container.
+   2) prototype - A new instance of the bean is created every time it is requested.
+   3) request - A new instance of the bean is created for each HTTP request. (Web applications only)
+   4) session - A new instance of the bean is created for each HTTP session. (Web applications only)
+   5) globalSession - A new instance of the bean is created for each global HTTP session. (Web applications only)
+ -->
+     <bean id="address1" class="com.mon7926.Address"  >
+         <property name="city" value="New York"/>
+         <property name="state" value="NY"/>
+     </bean>
+
+     <bean id="requestbean" class="com.mon7926.Address" scope="prototype">
+         <property name="city" value="Los Angeles"/>
+         <property name="state" value="CA"/>
+     </bean>
+    
+
+
+
+
+
+</beans>

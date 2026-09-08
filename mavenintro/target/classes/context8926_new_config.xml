@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+ 
+  <!-- 
+       Spring Annotation based configuration : Reduces XML configuration by using annotations in the Java classes.
+        1.Spring Annotations
+            Spring BBasic Annotations (@Component, @Autowired:inject a bean into another bean, @Qualifier, etc.)
+             @Autowired
+                @Qualifier("....") it will not independently works with autowire only
+        2.JSR250 Annotations
+        3.JSR330 Annotations
+
+        By default spring disables all types of 
+        annotation-based configuration unless 
+        explicitly enabled.
+
+        To enable spring context has to be customized
+        <context:annotation-config/> 
+        <context:component-scan base-package="com.mon7926"/> sub interface
+       of <context:annotation-config/>
+        <context:property-placeholder location="classpath:AddressData.properties,
+        classpath:StudentData.properties"/>
+     
+  
+  
+   -->
+  
+   <!-- observe here i have create beans for Address and Student separatly now we will 
+        use @Autowired in the Student class to inject the Address bean -->
+    <!-- create address bean -->
+    <!-- <bean id="address" class="com.mon7926.Address">
+        <property name="state" value="California"/>
+        <property name="city" value="Springfield"/>
+    </bean> -->
+
+    <!-- create bean for student -->
+    <!-- <bean id="student" class="com.mon7926.Student">
+        <property name="name" value="John Doe"/>
+        <property name="age" value="20"/>
+    </bean> -->
+    <!-- const-arg -->
+    <!-- <bean id="tempAddress" class="com.mon7926.Address">
+        <property name="state" value="California"/>
+        <property name="city" value="Springfield"/>
+    </bean> 
+    <bean id="permaAddress" class="com.mon7926.Address" >
+        <property name="state" value="California1"/>
+        <property name="city" value="SpripermaAddressngfield2"/>
+    </bean>
+    <bean id="student" class="com.mon7926.Student" primary="true">
+        <constructor-arg name="name" value="John Doe"/>
+        <constructor-arg name="age" value="20"/>
+    </bean> -->
+
+    <!-- spel spring expression language -->
+    <!-- address bean no  we will use value() -->
+     <!-- <bean id="address" class="com.mon7926.Address">
+     </bean>
+    <bean id="spelExample" class="com.mon7926.Student">
+    </bean> -->
+    <!-- <context:component-scan base-package="com.mon7926"/> -->
+    <!-- ============passing data from external properties files ======================-->
+     <context:annotation-config/>
+     <context:property-placeholder location="classpath:AddressData.properties,classpath:StudentData.properties"/>
+     <bean id="address" class="com.mon7926.Address">
+     </bean>
+     <bean id="student" class="com.mon7926.Student">
+     </bean>
+     
+</beans>
+ 

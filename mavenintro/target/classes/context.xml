@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/xsd-configuration.html -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- 
+    // wat is inversion of control (ioc) ?
+    // Inversion of Control (IoC) is a principle in software engineering where the control of 
+    // objects or portions of a program is transferred to a container or framework. 
+    // In the context of Spring, the Spring container takes control of the creation and management 
+    // of beans, rather than the application code itself.
+    //================================================================
+    // what is dependency injection?
+    // dependency means the objects or resources that a class needs to function properly.
+    // Dependency injection is a design pattern in which an object's 
+    // dependencies are provided by an external entity (like the Spring container) 
+    // rather than the object creating them itself.
+    // so dinjection is part of inversion of control (IoC) where the container injects the 
+    // dependencies into the objects.
+    //types of dj :
+    // ==========================================
+    //  setter injection example (if configured in context.xml) 
+    //  constructor injection example (if configured in context.xml) 
+    //  field injection example (if configured in context.xml) 
+    // Note: The actual injection examples would be configured in the context.xml file, 
+    // and Spring would automatically inject the dependencies based on the chosen method.
+           what does the below line internally mean
+             Student student1 = new Student();  // This is what Spring does internally when 
+           you define a bean with id "student1"
+           here below property tag line internally mean
+            student1.setName("sidhu");
+            student1.setAge(20);
+           this is called setter injection.
+           where the container will take care of injecting the dependencies into the bean.
+        1) which conatainer will take care of the injection dependencies ?
+           The Spring container is responsible for managing the injection of dependencies.
+        2)which container is responsible for managing the bean's lifecycle.
+           In Spring, this container is typically the ApplicationContext.
+        -->
+    <!-- <bean id="student1" class="com.mon7926.Student">
+       <property name="name" value="sidhu"/>
+       <property name="age" value="20"/>
+    </bean> -->
+    
+   <!-- constructor injection example  calls parameterized constructor -->
+    <!-- <bean id="student1" class="com.mon7926.Student">
+      <constructor-arg name="name" value="sidhu"/>
+      <constructor-arg name="age" value="20"/>
+    </bean> -->
+
+    <!-- mixed bean injection example (combination of constructor and setter injection) -->
+    
+    <!-- 
+    <bean id="address1" class="com.mon7926.Address"/>
+    <bean id="student1" class="com.mon7926.Student">
+       <constructor-arg name="name" value="sidhu"/>
+       <constructor-arg name="age" value="20"/>
+       <property name="address" ref="address1"/> ==> student1.setAddress(address1);
+    </bean> -->
+<!-- ==================================================================================== -->
+      <!-- //loose coupling example with Address bean/ aggregation/has-a relation/wiring -->
+      <!-- <bean id="address1" class="com.mon7926.Address">
+         <property name="city" value="Hyderabad"/>
+         <property name="state" value="Telangana"/>
+      </bean> -->
+     <!--  what this line internally mean "<property name="address" ref="address1"/>""
+      internally it is equivalent to calling the setter method on the student1 object:
+      student1.setAddress(address1); -->
+      <!-- <bean id="student1" class="com.mon7926.Student">
+         <property name="name" value="sidhu"/>
+         <property name="age" value="20"/>
+         <property name="address" ref="address1"/>
+      </bean> -->
+<!-- ============================================================================== -->
+<!--T1}Tight coupling /composition /inner bean example for this we will use const-arg -->
+ <!-- what this below bean definition internally means 
+ "Student student1 = new Student("sidhu", 20, new Address("Hyderabad", "Telangana"));" 
+ inner bean is exectued first then only outer bean is executed.
+ -->
+    <!-- <bean id="student1" class="com.mon7926.Student">
+       <constructor-arg name="name" value="sidhu"/>
+       <constructor-arg name="age" value="20"/>
+       <constructor-arg name="address">
+          <bean id="address1" class="com.mon7926.Address">
+             <constructor-arg name="city" value="Hyderabad"/>
+             <constructor-arg name="state" value="Telangana"/>
+          </bean>
+       </constructor-arg>
+    </bean> 
+
+      Address address2 = new Address("Hyderabad", "Telangana");
+      Student student2 = new Student();
+      student2.setAddress(address2);
+      
+    <bean id="student2" class="com.mon7926.Student">
+        <property name="address">
+            <bean id="address2" class="com.mon7926.Address">
+                <constructor-arg name="city" value="Hyderabad"/>
+                <constructor-arg name="state" value="Telangana"/>
+            </bean>
+        </property>
+    </bean>
+    -->
+<!-- ============================================================================= -->
+<!-- 4 ways to pass data using constructor arguments variable name already done,
+by type : here based on the type of the constructor argument values are assigned,
+by index: here based on the index of the constructor argument values are assigned,
+only value but order matters 
+<bean id="studentbytype" class="com.mon7926.Student">
+   <constructor-arg type="java.lang.String" value="sidhu"/>
+   <constructor-arg type="int" value="20"/>
+</bean>
+<bean id="studentbyindex" class="com.mon7926.Student">
+   <constructor-arg index="0" value="sidhu"/>
+   <constructor-arg index="1" value="20"/>
+</bean>
+<bean id="studentbyvalue" class="com.mon7926.Student">
+   <constructor-arg value="sidhu"/>
+   <constructor-arg value="20"/>
+</bean>
+-->
+<!-- ================================================================== -->
+<!-- Now when it is list or collection  -->
+<!-- Example of injecting a list into the Student bean -->
+<!-- <bean id="studentWithHobbies" class="com.mon7926.Student">
+    <property name="hobbies">
+        <list>
+            <value>Reading</value>
+            <value>Swimming</value>
+            <value>Coding</value>
+        </list>
+    </property>
+</bean>
+<!-- Example of injecting a map into the Student bean -->
+<bean id="studentWithAttributes" class="com.mon7926.Student">
+    <property name="attributes">
+        <map>
+            <entry key="height" value="6ft"/>
+            <entry key="weight" value="70kg"/>
+        </map>
+    </property>
+</bean> -->
+<!-- ================================================================================ -->
+<!-- Now Autowiring  doubt??
+what is autowiring in Spring? Autowiring is a feature that 
+allows Spring to automatically inject dependencies into a bean 
+by matching the property name, type,primary=true or constructor arguments with the available beans in the Spring context.
+
+-->
+
+   
+
+</beans>
