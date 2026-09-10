@@ -1,4 +1,5 @@
-
+git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
 Student table:
 
 1. Create a java project
